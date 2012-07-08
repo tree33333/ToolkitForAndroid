@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package chen.android.toolkit.res;
+package chen.android.toolkit.resource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +24,7 @@ import android.content.Context;
  * </br><b>name : </b>		AssetsReader
  * </br><b>description :</b>读取Assets文件夹内的
  * </br>@author : 			桥下一粒砂
- * </br><b>e-mail : </b>	chenyoca@163.com
+ * </br><b>e-mail : </b>	chenyoca@gmail.com
  * </br><b>weibo : </b>		@桥下一粒砂
  * </br><b>date : </b>		2012-7-8
  *

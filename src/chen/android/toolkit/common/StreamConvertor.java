@@ -26,7 +26,7 @@ import android.graphics.drawable.BitmapDrawable;
  * </br><b>name : </b>		StreamConvertor
  * </br><b>description :</b>流转换器
  * </br>@author : 			桥下一粒砂
- * </br><b>e-mail : </b>	chenyoca@163.com
+ * </br><b>e-mail : </b>	chenyoca@gmail.com
  * </br><b>weibo : </b>		@桥下一粒砂
  * </br><b>date : </b>		2012-7-8
  *

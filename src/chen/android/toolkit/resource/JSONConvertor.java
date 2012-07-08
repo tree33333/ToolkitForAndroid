@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package chen.android.toolkit.res;
+package chen.android.toolkit.resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import android.util.Log;
  * </br><b>name : </b>		JSONConvertor
  * </br><b>description :</b>JSON对象转换为其它Java对象
  * </br>@author : 			桥下一粒砂
- * </br><b>e-mail : </b>	chenyoca@163.com
+ * </br><b>e-mail : </b>	chenyoca@gmail.com
  * </br><b>weibo : </b>		@桥下一粒砂
  * </br><b>date : </b>		2012-7-8 下午2:37:33
  *

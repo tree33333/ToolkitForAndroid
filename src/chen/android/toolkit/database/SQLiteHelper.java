@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package chen.android.toolkit.db;
+package chen.android.toolkit.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,7 +27,7 @@ import android.util.Log;
  * </br><b>name : </b>		SQLiteHelper
  * </br><b>description :</b>创建数据库辅助工具，用于创建，打开和管理一个数据库。
  * </br>@author : 			桥下一粒砂
- * </br><b>e-mail : </b>	chenyoca@163.com
+ * </br><b>e-mail : </b>	chenyoca@gmail.com
  * </br><b>weibo : </b>		@桥下一粒砂
  * </br><b>date : </b>		2012-7-8 下午2:33:56
  *
