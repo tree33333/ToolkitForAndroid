@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 /**
  * </br><b>name : </b>		ActivityUtil
@@ -119,6 +120,22 @@ public class ActivityUtil {
 			}
 			switchTo(activity, intent);
 		}
+	}
+	
+	
+	/**
+	 * </br><b>title : </b>		显示Toast消息。
+	 * </br><b>description :</b>显示Toast消息，并保证运行在UI线程中
+	 * </br><b>time :</b>		2012-7-10 下午08:36:02
+	 * @param activity
+	 * @param message
+	 */
+	public static void toastShow(final Activity activity,final String message){
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 	
 	/**

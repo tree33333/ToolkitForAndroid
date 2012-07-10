@@ -23,6 +23,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.params.ConnManagerParams;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
+
 /**
  * </br><b>name : </b>		HttpHelper
  * </br><b>description :</b>HTTP连接辅助
@@ -33,6 +49,47 @@ import java.util.Map;
  *
  */
 public class HttpConnection {
+	
+	private static final String USER_AGENT = "Mozilla/5.0(Linux;U;Android 2.2.1;en-us;MIUI v4 Build.CHEN) "
+            +"AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1";
+	
+	/**
+	 * </br><b>title : </b>		创建一个HttpClient连接对象
+	 * </br><b>description :</b>TODO
+	 * </br><b>time :</b>		2012-7-10 下午10:49:35
+	 * @param charset
+	 * @return
+	 */
+	public static HttpClient createHttpClient(String charset){
+		HttpParams params =new BasicHttpParams();
+        HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+        HttpProtocolParams.setContentCharset(params,charset);
+        HttpProtocolParams.setUseExpectContinue(params, true);
+        HttpProtocolParams.setUserAgent( params,USER_AGENT);
+        ConnManagerParams.setTimeout(params, 1 * 1000);
+        HttpConnectionParams.setConnectionTimeout(params, 2 * 1000);
+        HttpConnectionParams.setSoTimeout(params, 4 * 1000);
+        SchemeRegistry schReg =new SchemeRegistry();
+        schReg.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+        schReg.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
+        // 使用线程安全的连接管理来创建HttpClient
+        ClientConnectionManager conMgr =new ThreadSafeClientConnManager(params, schReg);
+        return new DefaultHttpClient(conMgr, params);
+	}
+	
+	/**
+	 * </br><b>title : </b>		TODO
+	 * </br><b>description :</b>TODO
+	 * </br><b>time :</b>		2012-7-10 下午10:52:15
+	 * @return
+	 */
+	public static synchronized HttpClient getHttpClient(){
+		return createHttpClient(HTTP.UTF_8);
+	}
+	
+	public static synchronized HttpClient getHttpClientWithGBK(){
+		return createHttpClient("GBK");
+	}
 
 	/**
 	 * </br><b>title : </b>		向服务器发送POST请求，并接收服务器输出流
