@@ -83,6 +83,16 @@ public class ActivityUtil {
 	}
 	
 	/**
+	 * </br><b>title : </b>     隐藏软件输入法
+         * </br><b>description :</b>隐藏软件输入法
+         * </br><b>time :</b>       2012-7-12 下午7:20:00
+	 * @param activity
+	 */
+	public static void hideSoftInput(Activity activity){
+	    activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+	}
+	
+	/**
 	 * </br><b>title : </b>		跳转到某个Activity。
 	 * </br><b>description :</b>跳转到某个Activity
 	 * </br><b>time :</b>		2012-7-8 下午3:20:00
