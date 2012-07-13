@@ -31,7 +31,7 @@ import android.widget.BaseAdapter;
  * </br><b>date : </b>		2012-7-10 下午10:56:11
  *
  */
-public abstract class HolderAdapter<E> extends BaseAdapter {
+public class HolderAdapter<E> extends BaseAdapter {
 
 	/**
 	 * </br><b>name : </b>		ViewCreator
@@ -56,8 +56,8 @@ public abstract class HolderAdapter<E> extends BaseAdapter {
 		View createView(LayoutInflater inflater,int position,E data);
 		
 		/**
-		 * </br><b>title : </b>		对View进行填充数据
-		 * </br><b>description :</b>对View进行填充数据
+		 * </br><b>title : </b>		更新View
+		 * </br><b>description :</b>更新View
 		 * </br><b>time :</b>		2012-7-10 下午11:04:30
 		 * @param view
 		 * @param position
