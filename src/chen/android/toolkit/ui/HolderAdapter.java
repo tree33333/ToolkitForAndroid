@@ -60,14 +60,14 @@ public abstract class HolderAdapter<E> extends BaseAdapter {
 	 * @see android.widget.Adapter#getCount()
 	 */
 	public int getCount() {
-		return mDataCache.size();
+		return null == mDataCache ? 0 : mDataCache.size();
 	}
 
 	/* (non-Javadoc)
 	 * @see android.widget.Adapter#getItem(int)
 	 */
 	public E getItem(int position) {
-		return mDataCache.get(position);
+		return null == mDataCache ? null : mDataCache.get(position);
 	}
 
 	/* (non-Javadoc)
