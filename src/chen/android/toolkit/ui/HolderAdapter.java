@@ -33,16 +33,70 @@ import android.widget.BaseAdapter;
  */
 public abstract class HolderAdapter<E> extends BaseAdapter {
 
+	/**
+	 * </br><b>name : </b>		ViewCreator
+	 * </br><b>description :</b>创建View和更新View的接口
+	 * </br>@author : 			桥下一粒砂
+	 * </br><b>e-mail : </b>	chenyoca@gmail.com
+	 * </br><b>weibo : </b>		@桥下一粒砂
+	 * </br><b>date : </b>		2012-7-14 上午12:35:05
+	 *
+	 * @param <E>
+	 */
+	public interface ViewCreator<E>{
+		/**
+		 * </br><b>title : </b>		创建View
+		 * </br><b>description :</b>创建View,HolderAdapter需要创建View时，会调用此方法创建View。
+		 * </br><b>time :</b>		2012-7-10 下午11:03:47
+		 * @param inflater
+		 * @param position
+		 * @param data
+		 * @return
+		 */
+		View createView(LayoutInflater inflater,int position,E data);
+		
+		/**
+		 * </br><b>title : </b>		对View进行填充数据
+		 * </br><b>description :</b>对View进行填充数据
+		 * </br><b>time :</b>		2012-7-10 下午11:04:30
+		 * @param view
+		 * @param position
+		 * @param data
+		 */
+		void updateView(View view,int position,E data);
+	};
+	
+	/**
+	 * </br><b>name : </b>		ViewHolder
+	 * </br><b>description :</b>一个持有View引用对象的静态类，用以减少View的创建次数
+	 * </br>@author : 			桥下一粒砂
+	 * </br><b>e-mail : </b>	chenyoca@gmail.com
+	 * </br><b>weibo : </b>		@桥下一粒砂
+	 * </br><b>date : </b>		2012-7-14 上午12:31:56
+	 *
+	 */
 	private static class ViewHolder{
 		public View view;
 	}
 	
+	/**
+	 * 数据缓存
+	 */
 	private List<E> mDataCache;
 	
+	/**
+	 * 用于从XML文件中创建Layout
+	 */
 	private LayoutInflater mInflater;
 	
-	public HolderAdapter(LayoutInflater inflater){
+	/**
+	 * View创建器
+	 */
+	private ViewCreator<E> mCreator;
+	
+	public HolderAdapter(LayoutInflater inflater,ViewCreator<E> creator){
 		mInflater = inflater;
+		mCreator = creator;
 	}
 
 	/**
@@ -84,36 +138,13 @@ public abstract class HolderAdapter<E> extends BaseAdapter {
 		ViewHolder holder = null;
 		if (convertView == null) {
 		    holder = new ViewHolder();
-		    convertView = createView(mInflater, position, getItem(position),parent);
+		    convertView = mCreator.createView(mInflater, position, getItem(position));
 		    convertView.setTag(holder);
 		    holder.view = convertView;
 		} else {
 		    holder = (ViewHolder)convertView.getTag();
 		}
-		fillDataToView(holder.view,position, getItem(position));
+		mCreator.updateView(holder.view,position, getItem(position));
 		return convertView;
 	}
-	
-	/**
-	 * </br><b>title : </b>		创建View
-	 * </br><b>description :</b>创建View,HolderAdapter需要创建View时，会调用此方法创建View。
-	 * </br><b>time :</b>		2012-7-10 下午11:03:47
-	 * @param inflater
-	 * @param position
-	 * @param data
-	 * @param parent
-	 * @return
-	 */
-	protected abstract View createView(LayoutInflater inflater,int position,E data,ViewGroup parent);
-	
-	/**
-	 * </br><b>title : </b>		对View进行填充数据
-	 * </br><b>description :</b>对View进行填充数据
-	 * </br><b>time :</b>		2012-7-10 下午11:04:30
-	 * @param view
-	 * @param position
-	 * @param data
-	 */
-	protected abstract void fillDataToView(View view,int position,E data);
-
 }
