@@ -37,12 +37,56 @@ import android.util.Xml;
  * </br><b>date : </b>		2012-7-8 下午4:00:35
  *
  */
-public abstract class XMLParseEngine {
+public class XMLParseEngine {
 
+	/**
+	 * </br><b>name : </b>		XMLElementParser
+	 * </br><b>description :</b>节点元素解析接口
+	 * </br>@author : 			桥下一粒砂
+	 * </br><b>e-mail : </b>	chenyoca@gmail.com
+	 * </br><b>weibo : </b>		@桥下一粒砂
+	 * </br><b>date : </b>		2012-7-15 下午9:26:08
+	 *
+	 */
+	public interface XMLElementParser{
+		/**
+		 * </br><b>title : </b>		标签起始
+		 * </br><b>description :</b>解析引擎遇到起始标签时处理
+		 * </br><b>time :</b>		2012-7-8 下午4:12:46
+		 * @param uri
+		 * @param localName
+		 * @param qName
+		 * @param attributes
+		 */
+		void onStartElement(String uri, String localName, String qName, Attributes attributes);
+		
+		/**
+		 * </br><b>title : </b>		标签终止
+		 * </br><b>description :</b>解析引擎遇到终止标签时处理
+		 * </br><b>time :</b>		2012-7-8 下午4:13:30
+		 * @param qName
+		 * @param data
+		 */
+		void onEndElement(String qName,StringBuffer data);
+	};
+	
 	/**
 	 * 节点数据缓存
 	 */
 	private StringBuffer mBuffer = new StringBuffer();
+	
+	/**
+	 * 节点元素解析
+	 */
+	private XMLElementParser mElementParser;
+	
+	/**
+	 * </br><b>description : </b>	必须传入一个节点解析接口
+	 * @param elementParser
+	 */
+	public XMLParseEngine(XMLElementParser elementParser){
+		mElementParser = elementParser;
+	}
 	
 	/**
 	 * </br><b>title : </b>		对InputStream进行XML解析
@@ -84,7 +128,7 @@ public abstract class XMLParseEngine {
 		public void startElement(String uri, String localName, String qName, Attributes attributes) 
 				throws SAXException {
 			mBuffer.setLength(0);
-			onStartElement(uri,localName,qName,attributes);
+			mElementParser.onStartElement(uri,localName,qName,attributes);
 		}
 		
 		@Override
@@ -97,27 +141,8 @@ public abstract class XMLParseEngine {
 		
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
-			onEndElement(qName, mBuffer);
+			mElementParser.onEndElement(qName, mBuffer);
 		}
 	}
 	
-	/**
-	 * </br><b>title : </b>		标签起始
-	 * </br><b>description :</b>解析引擎遇到起始标签时处理
-	 * </br><b>time :</b>		2012-7-8 下午4:12:46
-	 * @param uri
-	 * @param localName
-	 * @param qName
-	 * @param attributes
-	 */
-	public abstract void onStartElement(String uri, String localName, String qName, Attributes attributes);
-	
-	/**
-	 * </br><b>title : </b>		标签终止
-	 * </br><b>description :</b>解析引擎遇到终止标签时处理
-	 * </br><b>time :</b>		2012-7-8 下午4:13:30
-	 * @param qName
-	 * @param data
-	 */
-	public abstract void onEndElement(String qName,StringBuffer data);
 }
