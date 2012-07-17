@@ -17,6 +17,8 @@ package chen.android.toolkit.system;
 
 import java.util.Map;
 
+import org.apache.http.NameValuePair;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -84,12 +86,23 @@ public class ActivityUtil {
 	
 	/**
 	 * </br><b>title : </b>     隐藏软件输入法
-         * </br><b>description :</b>隐藏软件输入法
-         * </br><b>time :</b>       2012-7-12 下午7:20:00
+     * </br><b>description :</b>隐藏软件输入法
+     * </br><b>time :</b>       2012-7-12 下午7:20:00
 	 * @param activity
 	 */
 	public static void hideSoftInput(Activity activity){
 	    activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+	}
+	
+	/**
+	 * </br><b>title : </b>		使UI适配输入法
+	 * </br><b>description :</b>使UI适配输入法
+	 * </br><b>time :</b>		2012-7-17 下午10:21:26
+	 * @param activity
+	 */
+	public static void adjustSoftInput(Activity activity) {
+		activity.getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 	}
 	
 	/**
@@ -130,6 +143,24 @@ public class ActivityUtil {
 			}
 			switchTo(activity, intent);
 		}
+	}
+	
+	/**
+	 * </br><b>title : </b>		带参数进行Activity跳转
+	 * </br><b>description :</b>带参数进行Activity跳转
+	 * </br><b>time :</b>		2012-7-17 下午10:22:58
+	 * @param activity
+	 * @param target
+	 * @param params
+	 */
+	public static void switchTo(Activity activity,Class<? extends Activity> target,NameValuePair...params){
+	    if( null != params ){
+	        Intent intent = new Intent(activity,target);
+	        for(NameValuePair param : params){
+	            setValueToIntent(intent, param.getName(), param.getValue());
+	        }
+	        switchTo(activity, intent);
+	    }
 	}
 	
 	

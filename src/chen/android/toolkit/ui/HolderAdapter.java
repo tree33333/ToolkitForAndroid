@@ -15,6 +15,7 @@
  */
 package chen.android.toolkit.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.view.LayoutInflater;
@@ -108,6 +109,30 @@ public class HolderAdapter<E> extends BaseAdapter {
 	public void update(List<E> data){
 		mDataCache = data;
 		notifyDataSetChanged();
+	}
+	
+	/**
+	 * </br><b>title : </b>		添加数据集
+	 * </br><b>description :</b>添加数据集
+	 * </br><b>time :</b>		2012-7-17 下午10:19:45
+	 * @param set
+	 */
+	public void add(List<E> set){
+	    if( null == mDataCache ) mDataCache = new ArrayList<E>();
+	    mDataCache.addAll(set);
+	    notifyDataSetChanged();
+	}
+
+	/**
+	 * </br><b>title : </b>		添加数据元素
+	 * </br><b>description :</b>添加数据元素
+	 * </br><b>time :</b>		2012-7-17 下午10:19:51
+	 * @param item
+	 */
+	public void add(E item){
+	    if( null == mDataCache ) mDataCache = new ArrayList<E>();
+	    mDataCache.add(item);
+	    notifyDataSetChanged();
 	}
 	
 	/* (non-Javadoc)
