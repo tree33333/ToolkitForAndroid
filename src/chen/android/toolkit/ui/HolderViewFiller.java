@@ -36,7 +36,6 @@ public class HolderViewFiller<T> {
 	
 	public HolderViewFiller(LayoutInflater inflater,ViewCreator<T> creator){
 		mAdapter = new HolderAdapter<T>(inflater,creator);
-		
 	}
 	
 	/**
@@ -51,6 +50,34 @@ public class HolderViewFiller<T> {
 			view.setAdapter(mAdapter);
 		}
 		mAdapter.update(data);
+	}
+	
+	/**
+	 * </br><b>title : </b>		添加数据集
+	 * </br><b>description :</b>添加数据集
+	 * </br><b>time :</b>		2012-7-18 下午8:16:38
+	 * @param view
+	 * @param set
+	 */
+	public void add(AbsListView view,List<T> set){
+		if( !mAdapter.equals(view.getAdapter()) ){
+			view.setAdapter(mAdapter);
+		}
+		mAdapter.add(set);
+	}
+	
+	/**
+	 * </br><b>title : </b>		添加数据
+	 * </br><b>description :</b>添加数据
+	 * </br><b>time :</b>		2012-7-18 下午8:16:55
+	 * @param view
+	 * @param item
+	 */
+	public void add(AbsListView view,T item){
+		if( !mAdapter.equals(view.getAdapter()) ){
+			view.setAdapter(mAdapter);
+		}
+		mAdapter.add(item);
 	}
 	
 	/**
