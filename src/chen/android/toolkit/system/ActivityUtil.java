@@ -17,8 +17,6 @@ package chen.android.toolkit.system;
 
 import java.util.Map;
 
-import org.apache.http.NameValuePair;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -38,10 +36,29 @@ import android.widget.Toast;
 public class ActivityUtil {
 
 	/**
+	 * </br><b>name : </b>		NameValue
+	 * </br><b>description :</b>名值对
+	 * </br>@author : 			桥下一粒砂
+	 * </br><b>e-mail : </b>	chenyoca@gmail.com
+	 * </br><b>weibo : </b>		@桥下一粒砂
+	 * </br><b>date : </b>		2012-7-18 下午9:27:23
+	 *
+	 */
+	public class NameValue {
+		public String name;
+		public Object value;
+
+		public NameValue(String name, Object value) {
+			this.name = name;
+			this.value = value;
+		}
+	};
+	
+	/**
 	 * </br><b>title : </b>		设置Activity全屏显示
 	 * </br><b>description :</b>设置Activity全屏显示。
-	 * @param activity Activity引用
-	 * @param isFull true为全屏，false为非全屏
+	 * @param activity 			Activity引用
+	 * @param isFull 			true为全屏，false为非全屏
 	 */
 	public static void setFullScreen(Activity activity,boolean isFull){
 		Window window = activity.getWindow();
@@ -69,7 +86,7 @@ public class ActivityUtil {
 	/**
 	 * </br><b>title : </b>		设置Activity的显示方向为垂直方向
 	 * </br><b>description :</b>强制设置Actiity的显示方向为垂直方向。
-	 * @param activity Activity对象
+	 * @param activity 			Activity对象
 	 */
 	public static void setScreenVertical(Activity activity){
 		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -78,7 +95,7 @@ public class ActivityUtil {
 	/**
 	 * </br><b>title : </b>		设置Activity的显示方向为横向
 	 * </br><b>description :</b>强制设置Actiity的显示方向为横向。
-	 * @param activity Activity对象
+	 * @param activity 			Activity对象
 	 */
 	public static void setScreenHorizontal(Activity activity){
 		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -153,11 +170,11 @@ public class ActivityUtil {
 	 * @param target
 	 * @param params
 	 */
-	public static void switchTo(Activity activity,Class<? extends Activity> target,NameValuePair...params){
+	public static void switchTo(Activity activity,Class<? extends Activity> target,NameValue...params){
 	    if( null != params ){
 	        Intent intent = new Intent(activity,target);
-	        for(NameValuePair param : params){
-	            setValueToIntent(intent, param.getName(), param.getValue());
+	        for(NameValue param : params){
+	            setValueToIntent(intent, param.name, param.value);
 	        }
 	        switchTo(activity, intent);
 	    }
