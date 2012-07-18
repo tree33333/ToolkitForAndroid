@@ -34,18 +34,32 @@ public class HolderViewFiller<T> {
 
 	private HolderAdapter<T> mAdapter;
 	
-	public HolderViewFiller(LayoutInflater inflater,AbsListView view,ViewCreator<T> creator){
+	public HolderViewFiller(LayoutInflater inflater,ViewCreator<T> creator){
 		mAdapter = new HolderAdapter<T>(inflater,creator);
-		view.setAdapter(mAdapter);
+		
 	}
 	
 	/**
-	 * </br><b>title : </b>		TODO
-	 * </br><b>description :</b>TODO
-	 * </br><b>time :</b>		2012-7-14 上午1:39:42
+	 * </br><b>title : </b>		将数据更新到View中
+	 * </br><b>description :</b>将数据更新到View中
+	 * </br><b>time :</b>		2012-7-18 下午7:41:55
+	 * @param view
 	 * @param data
 	 */
-	public void update(List<T> data){
+	public void update(AbsListView view,List<T> data){
+		if( !mAdapter.equals(view.getAdapter()) ){
+			view.setAdapter(mAdapter);
+		}
 		mAdapter.update(data);
+	}
+	
+	/**
+	 * </br><b>title : </b>		取得内置Adapter实例
+	 * </br><b>description :</b>取得内置Adapter实例
+	 * </br><b>time :</b>		2012-7-18 下午7:39:21
+	 * @return
+	 */
+	public HolderAdapter<T> getAdapter(){
+		return mAdapter;
 	}
 }
