@@ -37,8 +37,28 @@ public class PhoneUtil {
 	 * @param activity
 	 * @param phoneNumber
 	 */
-	public static void call(Activity activity,String phoneNumber){
+	public static void call(Activity activity, String phoneNumber){
 		Intent dialIntent = new Intent(Intent.ACTION_CALL,Uri.parse(String.format("tel:%s", phoneNumber)));
 		activity.startActivity(dialIntent);
+	}
+	 
+	/**
+	 * </br><b>title : </b>		发信息
+	 * </br><b>description :</b>发信息
+	 * </br><b>time :</b>		2012-7-21 上午8:54:28
+	 * @param activity
+	 * @param recver
+	 * @param content
+	 */
+	public static void sms(Activity activity, String recver, String content){
+		Intent sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms://")); 
+		sendIntent.putExtra("address", recver); 
+		sendIntent.putExtra("sms_body", content); 
+		activity.startActivity(sendIntent);
+	}
+	
+	public static void sendSms(String addr,String content){
+//		SmsManager smsManager = SmsManager.getDefault();
+//		smsManager.sendTextMessage(addr, null, content, il, null); 
 	}
 }

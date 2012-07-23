@@ -153,13 +153,13 @@ public class ActivityUtil {
 	 * @param params			跳转所带的参数
 	 */
 	public static void switchTo(Activity activity,Class<? extends Activity> targetActivity,Map<String,Object> params){
-		if( null != params ){
 			Intent intent = new Intent(activity,targetActivity);
-			for(Map.Entry<String, Object> entry : params.entrySet()){
-				setValueToIntent(intent, entry.getKey(), entry.getValue());
+			if( null != params ){
+				for(Map.Entry<String, Object> entry : params.entrySet()){
+					setValueToIntent(intent, entry.getKey(), entry.getValue());
+				}
 			}
 			switchTo(activity, intent);
-		}
 	}
 	
 	/**
@@ -171,13 +171,28 @@ public class ActivityUtil {
 	 * @param params
 	 */
 	public static void switchTo(Activity activity,Class<? extends Activity> target,NameValue...params){
-	    if( null != params ){
-	        Intent intent = new Intent(activity,target);
-	        for(NameValue param : params){
-	            setValueToIntent(intent, param.name, param.value);
-	        }
-	        switchTo(activity, intent);
-	    }
+        Intent intent = new Intent(activity,target);
+        for(NameValue param : params){
+            setValueToIntent(intent, param.name, param.value);
+        }
+        switchTo(activity, intent);
+	}
+	
+	/**
+	 * </br><b>title : </b>		带返回结果的Activity跳转请求
+	 * </br><b>description :</b>带返回结果的Activity跳转请求
+	 * </br><b>time :</b>		2012-7-23 下午11:29:56
+	 * @param activity
+	 * @param target
+	 * @param requestCode
+	 * @param params
+	 */
+	public static void switchForResult(Activity activity,Class<? extends Activity> target,int requestCode,NameValue...params){
+		Intent intent = new Intent(activity,target);
+        for(NameValue param : params){
+            setValueToIntent(intent, param.name, param.value);
+        }
+        activity.startActivityForResult(intent, requestCode);
 	}
 	
 	

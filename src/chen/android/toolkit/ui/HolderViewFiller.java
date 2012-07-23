@@ -17,8 +17,6 @@ package chen.android.toolkit.ui;
 
 import java.util.List;
 
-import org.apache.http.client.RedirectException;
-
 import android.view.LayoutInflater;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
