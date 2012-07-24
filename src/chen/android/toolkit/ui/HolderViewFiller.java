@@ -23,9 +23,12 @@ import android.widget.ListAdapter;
 import chen.android.toolkit.ui.HolderAdapter.ViewCreator;
 
 /**
- * </br><b>name : </b> HolderViewFiller </br><b>description :</b>TODO
- * </br>@author : 桥下一粒砂 </br><b>e-mail : </b> chenyoca@gmail.com </br><b>weibo :
- * </b> @桥下一粒砂 </br><b>date : </b> 2012-7-14 上午1:33:59
+ * </br><b>name : </b> HolderViewFiller 
+ * </br><b>description :</b>TODO
+ * </br>@author : 桥下一粒砂 
+ * </br><b>e-mail : </b> chenyoca@gmail.com 
+ * </br><b>weibo : </b> @桥下一粒砂 
+ * </br><b>date : </b> 2012-7-14 上午1:33:59
  * 
  */
 public class HolderViewFiller<T> {
@@ -40,7 +43,8 @@ public class HolderViewFiller<T> {
 	}
 
 	/**
-	 * </br><b>title : </b> 将数据更新到View中 </br><b>description :</b>将数据更新到View中
+	 * </br><b>title : </b> 将数据更新到View中 
+	 * </br><b>description :</b>将数据更新到View中
 	 * </br><b>time :</b> 2012-7-18 下午7:41:55
 	 * 
 	 * @param view
@@ -54,8 +58,9 @@ public class HolderViewFiller<T> {
 	}
 
 	/**
-	 * </br><b>title : </b> 添加数据集 </br><b>description :</b>添加数据集 </br><b>time
-	 * :</b> 2012-7-18 下午8:16:38
+	 * </br><b>title : </b> 添加数据集 
+	 * </br><b>description :</b>添加数据集 
+	 * </br><b>time :</b> 2012-7-18 下午8:16:38
 	 * 
 	 * @param view
 	 * @param set
@@ -68,8 +73,9 @@ public class HolderViewFiller<T> {
 	}
 
 	/**
-	 * </br><b>title : </b> 添加数据 </br><b>description :</b>添加数据 </br><b>time
-	 * :</b> 2012-7-18 下午8:16:55
+	 * </br><b>title : </b> 添加数据 
+	 * </br><b>description :</b>添加数据 
+	 * </br><b>time :</b> 2012-7-18 下午8:16:55
 	 * 
 	 * @param view
 	 * @param item
@@ -89,8 +95,8 @@ public class HolderViewFiller<T> {
 			holderAdapter = (null == adapter) ? null : (HolderAdapter<T>) adapter;
 			if (null == holderAdapter) {
 				holderAdapter = new HolderAdapter<T>(mInflater, mCreator);
+				view.setAdapter(holderAdapter);
 			}
-			view.setAdapter(holderAdapter);
 		} catch (ClassCastException ex) {
 			new RuntimeException(String.format("Adapter in View(%s) is not a HolderAdapter!", view.getClass().getName()));
 		}
